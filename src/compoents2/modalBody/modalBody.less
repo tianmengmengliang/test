@@ -1,0 +1,17 @@
+@import '../style/index';
+
+@min-modal-height: 600px;
+
+:global{
+  .yzh-modal-body{
+    min-height: @min-modal-height;
+    padding-top: 16px;
+    display: block;
+    position: relative;
+    overflow: auto;
+
+    &:before, &:after{
+      .clear-fix();
+    }
+  }
+}

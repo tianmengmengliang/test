@@ -1,0 +1,78 @@
+@dividing-line:2px solid #ececec;
+@received-color:#57c5f7;
+@unreceived-color: #ff1b6e;
+@success-color: #3aff29;
+
+/*Layout*/
+@menu-btn-item-margin-left:16px;
+
+/*Layout*/
+@menu-margin-bottom:16px;
+
+.menu-wrap(@menu-marin-bottom:@menu-margin-bottom){                   // 按钮组容器
+  margin-bottom:@menu-margin-bottom;
+}
+
+.menu-btn-item(@margin-left:@menu-btn-item-margin-left){              // 按钮布局
+  margin-left: @margin-left;
+}
+
+.operation-item(@padding:0 8px,@textAlign:left){                      // Table操作项
+  display:inline-block;
+  padding: @padding;
+  text-align:@textAlign;
+}
+
+.container-center(@position:absolute,@zIndex:9999){                  // 居中容器
+  position:@position;
+  display:inline-block;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%)
+}
+
+/*Color*/
+.color-generator(@color){
+  color: @color;
+}
+
+.success-color(){                                                     // 成功的颜色
+  .color-generator(#00bd00)
+}
+
+.error-color(){                                                       // 错误的颜色
+  .color-generator(#ff140a)
+}
+
+.wait-color(){                                                        // 等待的颜色
+  .color-generator(#f4fda1)
+}
+
+.info-color(){                                                        // 详情的颜色
+  .color-generator(#2ecdff)
+}
+
+.warn-color(){                                                        // 警告的颜色
+  .color-generator(#f98f46)
+}
+
+/*Table*/
+@prefix:yzh-d;
+.@{prefix}-table-row-odd{
+  background-color: #fbfbfb;
+}
+
+.@{prefix}-table-row-even{
+
+}
+
+.table{
+  th,td{
+    text-align:center;
+  }
+}
+
+/*Text*/
+.text-warning(@waringColor:@unreceived-color){
+  color:@waringColor;
+}

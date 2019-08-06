@@ -1,0 +1,45 @@
+@import '../../style/index';
+
+.button-container(@margin: 16px 0){
+  display: block;
+  position: relative;
+  margin: @margin;
+
+  &:before, &:after{
+    .clear-fix();
+  }
+
+  & .ant-btn{
+    margin: 0 8px 0 0
+  }
+}
+:global{
+
+  .button-container(@margin: 16px 0){
+    display: block;
+    position: relative;
+    margin: @margin;
+
+    &:before, &:after{
+      .clear-fix();
+    }
+
+    & .ant-btn{
+      //margin: 0 8px 0 0
+      margin-right: 8px;
+    }
+
+    & .ant-btn:last-child{
+      margin:0;
+    }
+  }
+
+    .@{prefix}-button-container{
+      .button-container()
+
+    }
+
+    .@{prefix}-form-button-container{
+      .button-container(0)
+    }
+}

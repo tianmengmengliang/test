@@ -1,0 +1,227 @@
+@prefix: yzh;
+@cssPrefix: my-device-page;
+@border-color-active: #1C95D4;
+@border-color-disabled: #ccc;
+@font-color-active: #000000;
+@font-color-disabled: #ccc;
+@font-color-error: red;
+@font-color-success: green;
+@background-color-default: #ffffff;
+@device-background: #00a29a;
+
+:global{
+  .@{prefix}-@{cssPrefix}{
+    padding: 0 8px;
+
+    & .device-list{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-around;
+      align-items: center;
+      margin: auto;
+      margin-bottom: 16px;
+  }
+
+    & .deviceCard{
+      display: inline-block;
+      background-color: #ffffff;
+      width: 200px;
+      padding: 8px 0;
+      margin: 8px;
+      border: 1px solid @border-color-disabled;
+      flex-basis: 0;
+      flex-grow: 1;
+      flex-shrink: 0;
+      transition-property: all;
+      transition-duration: 500ms;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+
+      & .card-title-container{
+        height: 64px;
+        font-size: 26px;
+        line-height: 64px;
+        font-weight: normal;
+        color: @font-color-disabled;
+        text-align: center;
+        border-bottom: 1px solid @border-color-disabled;
+
+        & .card-title-btn-container{
+          display: none;
+          margin-left: 8px;
+
+          & .ant-btn {
+            margin-top: -8px;
+            vertical-align: middle;
+          }
+        }
+
+        & .card-title-btn-container-visible{
+          display: inline-block;
+        }
+      }
+
+      & .card-title-container-active{
+        color: @font-color-active;
+        border-bottom: 1px solid @border-color-active;
+      }
+
+      & .card-content-container{
+        width: auto;
+        height: auto;
+        position: relative;
+
+        & .card-grid{
+          position: relative;
+        }
+
+        & .card-img{
+          display: block;
+          width: 100%;
+        }
+
+        & .card-info{
+          position: absolute;
+          top: 0;
+          left: 50%;
+          bottom: 0;
+          right: 0;
+          font-size: 12px;
+          font-weight: normal;
+          line-height: 1.5;
+
+          & .card-text-container{
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translate(0, -50%);
+          }
+
+          & .card-text-item{
+            margin-top: 8px;
+          }
+
+          & .card-text-item-error{
+            color: @font-color-error;
+            font-size: 16px;
+            font-weight: normal;
+          }
+        }
+      }
+    }
+
+    & .deviceCard:hover{
+      perspective: none;
+      backface-visibility: hidden;
+      transform-origin: center center;
+      transform-style: flat;
+      transform: scale(1.05 , 1.05);
+      cursor: pointer;
+      border: 1px solid @border-color-active;
+    }
+
+    & .deviceCard-active{
+      border: 1px solid @border-color-active;
+    }
+
+    & .device-universal-setting-btn {
+      height: 64px;
+      line-height: 64px;
+      text-align: center;
+      border: 2px solid @border-color-disabled;
+      color: #47baef;
+      font-size: 26px;
+      font-weight: normal;
+      background-color: #ffffff;
+      margin-bottom: 16px;
+      cursor: pointer;
+      transition-property: border;
+      transition-duration: 500ms;
+      transition-timing-function: ease-out;
+      transition-delay: 0s;
+    }
+
+    & .device-universal-setting-btn:hover {
+      transform: scale(1.01, 1.01);
+      border: 1px solid @border-color-active;
+    }
+
+    & .alarm-container {
+      display: inline-block;
+      width: 440px;
+      overflow: hidden;
+      vertical-align: top;
+      margin: 0 16px;
+      height: 100%;
+      background-color: transparent;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      & .table-row-selected {
+        background-color: #54C2F1;
+      }
+
+      & .title-img {
+        width: 100%;
+        display: block;
+      }
+
+      & .title-container {
+        padding: 16px 0 8px 8px;
+        font-weight: normal;
+
+        & .title-text {
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+        & .title-more-btn {
+
+        }
+      }
+    }
+
+    & .location-container {
+      min-width: 592px;
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+      margin: 0 16px;
+      height: 100%;
+      cursor: url("https://webapi.amap.com/theme/v1.3/openhand.cur"), default;
+      background-color: transparent;
+
+      & .title-img {
+        width: 100%;
+        display: block;
+      }
+
+      & .map-container {
+        height: 382px;
+      }
+    }
+
+    & .alarm-wrap {
+      display: flex;
+      flex-direction: row;
+      justify-content: stretch;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+
+      & .alarm-container {
+        flex-basis: auto;
+        flex-grow: 0;
+        flex-shrink: 0;
+      }
+
+      & .location-container {
+        flex-basis: 0;
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+    }
+  }
+}

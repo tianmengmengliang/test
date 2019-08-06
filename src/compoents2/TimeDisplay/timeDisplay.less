@@ -1,0 +1,20 @@
+@import "~antd/../../src/style/index";
+@cssPrefix: time-display;
+
+:global {
+  .@{prefix}-@{cssPrefix} {
+    & &-subtitle {
+      height: 22px;
+      text-align: left;
+      font-size: 14px;
+      color: rgba(0, 0, 0, 0.45);
+      font-style: normal;
+    }
+    & &-date-time-text {
+      font-size: 16px;
+      font-style: normal;
+      color: rgba(0, 0, 0, 0.85);
+      text-align: left;
+    }
+  }
+}

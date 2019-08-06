@@ -1,0 +1,30 @@
+@prefix:yzh;
+
+:global{
+  .@{prefix}-data-grid-container{
+    display: block;
+    position: relative;
+    overflow: auto;
+
+    &:before, &:after{
+      content: '';
+      display: block;
+      clear: both;
+      height: 0;
+    }
+    & .react-grid-Cell{
+      //font-weight: 600;
+      //font-family:
+      color: rgba(0, 0, 0, 1); //列表内容的字体样式。
+      font-size:12px;
+      //opacity: 1;
+    }
+  }
+
+  .@{prefix}-data-grid-pagination{
+    margin-top: 16px;
+    float: right;
+    width: auto;
+    position: relative;
+  }
+}

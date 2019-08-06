@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>全国各个城市 pm 指数</title>
+  <script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+  <script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+  <script src="https://unpkg.com/g2-react@1.2.0/dist/index.js"></script>
+  <script src="https://cdn.bootcss.com/babel-core/5.8.38/browser.min.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!--1.引入G2库-->
+  <script src="https://gw.alipayobjects.com/os/antv/assets/g2/3.0.5-beta.5/g2.min.js"></script>
+  <script src="https://gw.alipayobjects.com/os/antv/assets/data-set/0.8.5/data-set.min.js"></script>
+</head>
+<body>
+
+<div id="c1"></div>
+<script type="text/babel">
+  const MyComponent = React.createClass({
+    componentDidMount: function() {
+      const Frame = G2.Frame;
+      const Stat = G2.Stat;
+      axios.get('../../../static/data/world.geo.json').then(function (response) {
+        let map = [];
+        const mapData = response.data;
+        const features = mapData.features;
+        for(let i=0; i<features.length; i++) {
+          const name = features[i].properties.name;
+          map.push({
+            "name": name
+          });
+        }
+        const chart = new G2.Chart({
+          id: 'chart',
+          width: 650,
+          height: 400,
+          plotCfg: {
+            margin: [10, 105]
+          }
+        });
+        chart.legend(false);
+        chart.coord('map', {
+          projection: 'albers',
+          basic: [110, 0, 25, 47], // 指定投影方法的基本参数，[λ0, φ0, φ1, φ2] 分别表示中央经度、坐标起始纬度、第一标准纬度、第二标准纬度
+          max: [16.573, -13.613], // 指定投影后最大的坐标点
+          min: [-27.187, -49.739] // 指定投影后最小的坐标点
+        });
+        chart.tooltip({
+          title: null
+        });
+        const bgView = chart.createView();
+        bgView.source(map);
+        bgView.tooltip(false);
+        bgView.axis(false);
+        bgView.polygon()
+          .position(Stat.map.region('name', mapData))
+          .color('name', function(val){
+            if(val === 'China') {
+              return '#C7C7C7';
+            } else {
+              return '#F0F0F0';
+            }
+          })
+          .style({
+            stroke: '#fff',
+            lineWidth: 3
+          });
+        axios.get('../../../static/data/china-pm.json').then(function (response) {
+          const pointView = chart.createView();
+          pointView.source(response.data);
+          pointView.point().position(Stat.map.location('long*lant'))
+            .size('value', 12, 1)
+            .color('#6A006F')
+            .tooltip('name*value')
+            .shape('circle')
+            .style({
+              shadowBlur: 10,
+              shadowColor: '#6A006F'
+            });
+          chart.render();
+        });
+      });
+    },
+    render() {
+      return (
+        <div>
+          <div id="chart"></div>
+        </div>
+      );
+    },
+  });
+  ReactDOM.render(<MyComponent />, document.getElementById('c1'));
+</script>
+</body>
+</html>
