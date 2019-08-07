@@ -54,40 +54,36 @@ export default class Login extends Component {
     e.preventDefault();
     const { type } = this.state;
     this.props.form.validateFields({ force: true },(err, values) => {
-        if (!err){
-         /*this.props.dispatch({
-            type: `login/${type}Submit`,
-            payload: values,
-          });*/
-          const { remember } = values;
-          this.getUserLogin({...values}, (err, res ={})=> {
-            if(err){
-              message.error(err.message ||'登录失败');
-              return;
-            }
-            //------------------------------------------------
-            //1.保存token、 用户角色信息。
-            const {responseObject } = res;
-            //console.log('登录:', responseObject);
-            //
-            localStorage.setItem(token,  responseObject['token']);
-            localStorage.setItem(lsNames.platform.USER_ROLE,  JSON.stringify( responseObject['employee']));
+         if (!err){
+        //   const { remember } = values;
+        //   this.getUserLogin({...values}, (err, res ={})=> {
+        //     if(err){
+        //       message.error(err.message ||'登录失败');
+        //       return;
+        //     }
+        //     //------------------------------------------------
+        //     //1.保存token、 用户角色信息。
+        //     const {responseObject } = res;
+        //     //console.log('登录:', responseObject);
+        //     //
+        //     localStorage.setItem(token,  responseObject['token']);
+        //     localStorage.setItem(lsNames.platform.USER_ROLE,  JSON.stringify( responseObject['employee']));
 
-            //2.要求免面登录.
-            if (remember) {
-              console.log('判断是免登录.');
-              localStorage.setItem(user,  JSON.stringify(values));
-              this.props.dispatch(routerRedux.push('/layout'));
-            }else {
-              this.props.dispatch( routerRedux.push('/layout'));
-            }
-         });
-           /*if(values.userName ==='111' && values.password ==='123') {
+        //     //2.要求免面登录.
+        //     if (remember) {
+        //       console.log('判断是免登录.');
+        //       localStorage.setItem(user,  JSON.stringify(values));
+        //       this.props.dispatch(routerRedux.push('/layout'));
+        //     }else {
+        //       this.props.dispatch( routerRedux.push('/layout'));
+        //     }
+        //  });
+           if(values.userName ==='111' && values.password ==='123') {
             if (remember) {
               console.log('判断是免登录。');
             }
             this.props.dispatch(  routerRedux.push('/layout/form/advanced-form'));
-          }*/
+          }
         }
     });
   }
